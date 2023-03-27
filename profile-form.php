@@ -5,7 +5,6 @@
 <body>  
 
 <?php
-// define variables and set to empty values
 $complete_name = $birthdate = $email = $program = $favorite_color = $superpower_level = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -25,7 +24,7 @@ function profile_inputs($data) {
 }
 ?>
 
-<h2>PHP Form Validation Example</h2>
+<h1>Profile Form</h1>
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
   Complete Name: <input type="text" name="complete_name">
   <br><br>
@@ -46,18 +45,18 @@ function profile_inputs($data) {
 </form>
 
 <?php
-echo "<h2>Your Input:</h2>";
-echo $complete_name;
-echo "<br>";
-echo $birthdate;
-echo "<br>";
-echo $email;
-echo "<br>";
-echo $program;
-echo "<br>";
-echo $favorite_color;
-echo "<br>";
-echo $superpower_level;
+echo "<h1> Your Input:</h1>";
+echo "Complete Name: " . "<b>$complete_name</b>";
+echo "<br><br>";
+echo "Birthadate: " . "<b>$birthdate</b>";
+echo "<br><br>";
+echo "Email: " . "<b>$email</b>";
+echo "<br><br>";
+echo "Program: " . "<b>$program</b>";
+echo "<br><br>";
+echo "Favorite Color: " . "<b>$favorite_color</b>";
+echo "<br><br>";
+echo "Birthadate: " . "<b>$superpower_level</b>";
 ?>
 
 </body>
