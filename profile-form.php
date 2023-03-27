@@ -5,6 +5,7 @@
 <body>  
 
 <?php
+// define variables and set to empty values
 $complete_name = $birthdate = $email = $program = $favorite_color = $superpower_level = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
