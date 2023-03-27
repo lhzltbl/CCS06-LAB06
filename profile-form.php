@@ -1,107 +1,63 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>  
 <html>
-<body>
-
-<h1>PROFILE FORM</h1>
-
-<form method="post" action="profile-form.php">
-  Complete Name: <input type="text" name="cname" required>
-  <br><br>
-
-  Birthdate: <input type="date" id="bdate" size="30" required>
-  <br><br>
-
-  Email: <input type="email" id="email" pattern=".+@auf.edu.ph" size="30" required>
-  <br><br>
-
-  Program: 
-  <select name="program" id="program">
-    <option value="Select program">Select program</option>
-  	<option value="BSCS">BSCS</option>
-  	<option value="BSIT">BSIT</option>
-  </select>
-  <br><br>
-  
-  Favorite Color: <input type="color" id="fcolor">
-  <br><br>
-  
-  Superpower Level: <input type="range" id="spower" min="0" max="10">
-  <br><br>
-  
-  <input type="submit">
-  
-</form>
-
-<h1>YOUR INPUT</h1>
+<head>
+</head>
+<body>  
 
 <?php
-if (isset($_POST['submit'])):
-    // collect value of input field
-    $complete_name = $_POST['cname'];
-    if (empty($complete_name)) {
-        echo "Name is empty";
-    } else {
-        echo $complete_name;
-    }
+// define variables and set to empty values
+$complete_name = $birthdate = $email = $program = $favorite_color = $superpower_level = "";
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $complete_name = profile_inputs($_POST["complete_name"]);
+  $birthdate = profile_inputs($_POST["birthdate"]);
+  $email = profile_inputs($_POST["email"]);
+  $program = profile_inputs($_POST["program"]);
+  $favorite_color = profile_inputs($_POST["favorite_color"]);
+  $superpower_level = profile_inputs($_POST["superpower_level"]);
+}
 
-if (isset($_POST['submit'])):
-    // collect value of input field
-    $birthdate = $_POST['bdate'];
-    if (empty($birthdate)) {
-        echo "Bithdate is empty";
-    } else {
-        echo $birthdate;
-    }
+function profile_inputs($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+?>
 
+<h2>PHP Form Validation Example</h2>
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">  
+  Complete Name: <input type="text" name="complete_name">
+  <br><br>
+  Birthdate: <input type="date" name="birthdate">
+  <br><br>
+  E-mail: <input type="email" name="email">
+  <br><br>
+  Program: <select name="program">
+  <option value="BSCS">BSCS</option>
+  <option value="BSIT">BSIT</option> 
+  </select>
+   <br><br>
+  Fovorite Color: <input type="color" name="favorite_color">
+  <br><br>
+  Superpower Level:  <input type="range" name="superpower_level"  min="0" max="100">
+  <br><br>
+  <input type="submit" name="submit" value="Submit">  
+</form>
 
-if (isset($_POST['submit'])):
-    // collect value of input field
-    $email = $_POST['email'];
-    if (empty($email)) {
-        echo "Email is empty";
-    } else {
-        echo $email;
-    }
-
-
-if (isset($_POST['submit'])):
-    // collect value of input field
-    $program = $_POST['program'];
-    if (empty($program)) {
-        echo "Program is empty";
-    } else {
-        echo $program;
-    }
-
-
-if (isset($_POST['submit'])):
-    // collect value of input field
-    $favorite_color = $_POST['fcolor'];
-    if (empty($favorite_color)) {
-        echo "Favorite color is empty";
-    } else {
-        echo $favorite_color;
-    }
-
-
-if (isset($_POST['submit'])):
-    // collect value of input field
-    $superpower_level = $_POST[''];
-    if (empty($superpower_level)) {
-        echo "Superpower level is empty";
-    } else {
-        echo $superpower_level;
-    }
-
-
-echo $complete_name
-echo $birthdate
-echo $email
-echo $program
-echo $favorite_color
-echo $superpower_level
-
+<?php
+echo "<h2>Your Input:</h2>";
+echo $complete_name;
+echo "<br>";
+echo $birthdate;
+echo "<br>";
+echo $email;
+echo "<br>";
+echo $program;
+echo "<br>";
+echo $favorite_color;
+echo "<br>";
+echo $superpower_level;
 ?>
 
 </body>
